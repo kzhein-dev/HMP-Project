@@ -1,13 +1,13 @@
-package com.codeWithProject.HMP;
+package com.project.HMP;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HmpApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HmpApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
