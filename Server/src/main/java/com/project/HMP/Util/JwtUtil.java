@@ -17,10 +17,12 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
+	//Generate Token
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
     }
 
+    
     private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return Jwts.builder()
                 .setClaims(extraClaims)
@@ -31,12 +33,18 @@ public class JwtUtil {
                 .compact();
     }
     
+    private Key getSigningKey() {
+        byte[] keyBytes = Decoders.BASE64.decode("413F4428472B4B6250655368566D5970337336763979244226452948404D6351");
+        return Keys.hmacShaKeyFor(keyBytes);
+    }
+    
     
     public boolean isTokenValid(String token, UserDetails userDetails) {
     	final String userName = extractUserName(token);
     	return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
     
+//    Extraction data from token
     private Claims extractAllClaims(String token) {
     	return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody();
     }
@@ -55,11 +63,8 @@ public class JwtUtil {
     
     private <T>T extractClaim(String token, Function<Claims,T>claimsResolvers){
     	final Claims claims = extractAllClaims(token);
-    	return claimsResolvers.apply(claims);
+    	return claimsResolvers.apply(claims);	
     }
 
-    private Key getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode("413F4428472B4B6250655368566D5970337336763979244226452948404D6351");
-        return Keys.hmacShaKeyFor(keyBytes);
-    }
+
 }
