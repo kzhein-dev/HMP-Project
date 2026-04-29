@@ -1,4 +1,4 @@
-package com.project.HMP.Enums;
+package com.project.hotel_management.enums;
 
 public enum UserRole {
 	ADMIN,

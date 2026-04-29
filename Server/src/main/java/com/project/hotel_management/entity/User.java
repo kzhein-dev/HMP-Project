@@ -1,13 +1,11 @@
-package com.project.HMP.Entity;
+package com.project.hotel_management.entity;
 import java.util.*;
-import org.springframework.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.project.HMP.Enums.UserRole;
+import com.project.hotel_management.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
-
 
 @Entity
 @Data
@@ -17,11 +15,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String email;
     private String password;
-    private UserRole userRole;
+    private  UserRole userRole;
+    
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority(userRole.name()));

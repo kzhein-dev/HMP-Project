@@ -1,4 +1,4 @@
-package com.project.HMP.Util;
+package com.project.hotel_management.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -46,7 +46,11 @@ public class JwtUtil {
     
 //    Extraction data from token
     private Claims extractAllClaims(String token) {
-    	return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody();
+    	return Jwts.parserBuilder()
+    			.setSigningKey(getSigningKey())
+    			.build()
+    			.parseClaimsJws(token)
+    			.getBody();
     }
     
     public String extractUserName(String token) {
