@@ -3,6 +3,8 @@ import java.util.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.project.hotel_management.dto.UserDto;
 import com.project.hotel_management.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -43,6 +45,16 @@ public class User implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+	
+	public UserDto getUserDto() {
+		UserDto dto = new UserDto();
+		dto.setId(id);
+		dto.setName(name);
+		dto.setEmail(email);
+		dto.setUserRole(userRole);
+		
+		return dto;
 	}
     
 }
