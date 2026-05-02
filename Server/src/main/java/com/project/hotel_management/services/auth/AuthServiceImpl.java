@@ -36,12 +36,8 @@ public class AuthServiceImpl implements AuthService {
             System.out.println("Admin account already exist");
         }
     }
-<<<<<<< Updated upstream
-}
 
 
-=======
-    
     public UserDto createUser(SignupRequest signupRequest) {
         if (userRepository.findFirstByEmail(signupRequest.getEmail()).isPresent()) {
             throw new EntityExistsException("User Already Present With Email " + signupRequest.getEmail());
@@ -57,4 +53,4 @@ public class AuthServiceImpl implements AuthService {
         return createdUser.getUserDto();
     }
 }
->>>>>>> Stashed changes
+
