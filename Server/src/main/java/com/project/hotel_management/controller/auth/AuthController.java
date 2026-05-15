@@ -1,14 +1,27 @@
 package com.project.hotel_management.controller.auth;
 
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.project.hotel_management.dto.AuthenticationRequest;
+import com.project.hotel_management.dto.AuthenticationResponse;
 import com.project.hotel_management.dto.SignupRequest;
 import com.project.hotel_management.dto.UserDto;
+import com.project.hotel_management.entity.User;
+import com.project.hotel_management.repository.UserRepository;
 import com.project.hotel_management.services.auth.AuthService;
+import com.project.hotel_management.util.JwtUtil;
 
 import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +32,10 @@ import lombok.RequiredArgsConstructor;
 public class AuthController {
 
 	private final AuthService authService;
+	private final AuthenticationManager authenticationManager;
+	private final UserDetailsService userDetailsService;
+	private final UserRepository userRepository;
+	private final JwtUtil jwtUtil;
 	@PostMapping("/signup")
 	public ResponseEntity<?> signupUser(@RequestBody SignupRequest signupRequest) {
 	    try {
@@ -29,5 +46,27 @@ public class AuthController {
 	    } catch (Exception e) {
 	        return new ResponseEntity<>("User not created, come again later", HttpStatus.BAD_REQUEST);
 	    }
+	}
+	
+	@PostMapping("/login")
+	public AuthenticationResponse createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) {
+	    try {
+	        authenticationManager.authenticate(
+	            new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
+	    } catch (BadCredentialsException e) {
+	        throw new BadCredentialsException("Incorrect username or password.");
+	    }
+
+	    final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+	    Optional<User> optionalUser = userRepository.findFirstByEmail(userDetails.getUsername());
+	    final String jwt = jwtUtil.generateToken(userDetails);
+
+	    AuthenticationResponse authenticationResponse = new AuthenticationResponse();
+	    if(optionalUser.isPresent()) {
+	        authenticationResponse.setJwt(jwt);
+	        authenticationResponse.setUserRole(optionalUser.get().getUserRole());
+	        authenticationResponse.setUserId(optionalUser.get().getId());
+	    }
+	    return authenticationResponse;
 	}
 }
