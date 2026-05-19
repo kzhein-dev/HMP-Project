@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoNgZorroAndModule } from './DemoNgZorroAndModule';
-// import { LoginComponent } from './auth/components/login/login.component';
+import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 // import { RoomsComponent } from './modules/customer/components/rooms/rooms.component';
 
@@ -19,7 +19,7 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
-    // LoginComponent,
+    LoginComponent,
     RegisterComponent,
     // RoomsComponent
   ],
