@@ -5,6 +5,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { Router } from '@angular/router';
+import { UserStorageService } from '../../services/storage/user-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,14 @@ export class LoginComponent implements OnInit {
 
   submitForm(){
     this.authService.login(this.loginForm.value).subscribe(res => {
-      
+      if(res.id != null){
+        const user = {
+          id: res.id,
+          role: res.userRole
+        }
+        UserStorageService.saveUser(user);
+        UserStorageService.saveToken(res.token);
+      }
     }, error => {
       this.message.error('Login failed!',{ nzDuration: 5000 });
     });
