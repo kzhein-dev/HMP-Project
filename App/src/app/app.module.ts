@@ -12,7 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoNgZorroAndModule } from './DemoNgZorroAndModule';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
-// import { RoomsComponent } from './modules/customer/components/rooms/rooms.component';
 
 registerLocaleData(en);
 
@@ -20,22 +19,19 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    // RoomsComponent
+    RegisterComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
-    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule, 
     HttpClientModule,
     BrowserAnimationsModule,
-    DemoNgZorroAndModule,
-    ReactiveFormsModule
+    DemoNgZorroAndModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-//

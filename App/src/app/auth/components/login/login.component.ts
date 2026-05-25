@@ -38,7 +38,13 @@ export class LoginComponent implements OnInit {
           role: res.userRole
         }
         UserStorageService.saveUser(user);
-        UserStorageService.saveToken(res.token);
+        UserStorageService.saveToken(res.jwt);
+        
+        if (UserStorageService.isAdminLoggedIn()) {
+          this.router.navigateByUrl('/admin/dashboard');
+        }else if (UserStorageService.isCustomerLoggedIn()) {
+          this.router.navigateByUrl('/customer/rooms');
+        }
       }
     }, error => {
       this.message.error('Login failed!',{ nzDuration: 5000 });
