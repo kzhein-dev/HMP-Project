@@ -37,6 +37,8 @@ public class AuthController {
 	private final UserService userService;
 	private final UserRepository userRepository;
 	private final JwtUtil jwtUtil;
+	
+	
 	@PostMapping("/signup")
 	public ResponseEntity<?> signupUser(@RequestBody SignupRequest signupRequest) {
 	    try {
