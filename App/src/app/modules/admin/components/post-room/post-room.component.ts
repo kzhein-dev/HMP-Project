@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 
 @Component({
   selector: 'app-post-room',
   templateUrl: './post-room.component.html',
   styleUrls: ['./post-room.component.scss'],
-  imports: [BrowserAnimationsModule]
 })
 export class PostRoomComponent {
 

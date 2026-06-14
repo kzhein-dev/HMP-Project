@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoNgZorroAndModule } from './DemoNgZorroAndModule';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
-import { PostRoomComponent } from './components/post-room/post-room.component';
+import { PostRoomComponent } from './modules/admin/components/post-room/post-room.component';
 
 registerLocaleData(en);
 
@@ -31,7 +31,7 @@ registerLocaleData(en);
     ReactiveFormsModule, 
     HttpClientModule,
     BrowserAnimationsModule,
-    DemoNgZorroAndModule
+    DemoNgZorroAndModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
