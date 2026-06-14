@@ -1,7 +1,11 @@
 <nz-layout class="app-layout">
-  <nz-sider nzCollapsible nzWidth="200px"  *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn">
+  <nz-sider
+    nzCollapsible
+    nzWidth="200px"
+    *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn"
+  >
     <div class="sidebar-logo">
-      <img src="assets/logo.png" alt="logo">
+      <img src="assets/logo.png" alt="logo" />
       <strong>Hotel System</strong>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
@@ -16,12 +20,16 @@
     </ul>
   </nz-sider>
 
-  <nz-sider nzCollapsible nzWidth="200px"  *ngIf="isAdminLoggedIn">
+  <nz-sider nzCollapsible nzWidth="200px" *ngIf="isAdminLoggedIn">
     <div class="sidebar-logo">
-      <img src="assets/logo.png" alt="logo">
+      <img src="assets/logo.png" alt="logo" />
       <strong>Admin Panel</strong>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item routerLink="/admin/room">
+        <span nz-icon nzType="apartment"></span>
+        <span><strong>Post Room</strong></span>
+      </li>
       <li nz-menu-item routerLink="/admin/rooms">
         <span nz-icon nzType="apartment"></span>
         <span><strong>Rooms</strong></span>
@@ -37,9 +45,14 @@
     </ul>
   </nz-sider>
 
-  <nz-sider nzCollapsible nzWidth="200px"  *ngIf="isCustomerLoggedIn" nzTheme="dark">
+  <nz-sider
+    nzCollapsible
+    nzWidth="200px"
+    *ngIf="isCustomerLoggedIn"
+    nzTheme="dark"
+  >
     <div class="sidebar-logo">
-      <img src="assets/logo.png" alt="logo">
+      <img src="assets/logo.png" alt="logo" />
       <span></span><strong>Customer Portal</strong>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
@@ -64,7 +77,7 @@
         <router-outlet></router-outlet>
       </div>
     </nz-content>
-    
+
     <nz-footer>Hotel Management System ©2026 Created by Developer</nz-footer>
   </nz-layout>
 </nz-layout>

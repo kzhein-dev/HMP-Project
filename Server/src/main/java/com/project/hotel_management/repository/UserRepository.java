@@ -11,8 +11,7 @@ import com.project.hotel_management.enums.UserRole;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	Optional<User> findFirstByEmail(String emmail);
+	Optional<User> findFirstByEmail(String email);
 	Optional<User> findByUserRole(UserRole userRole);
 
 }
-///
