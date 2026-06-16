@@ -24,4 +24,9 @@ public class RoomsController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+    
+    @GetMapping("/rooms/{pageNumber}")
+    public ResponseEntity<?> getAllRooms(@PathVariable int pageNumber){
+    	return ResponseEntity.ok(roomsService.getAllRooms(pageNumber));
+    }
 }
