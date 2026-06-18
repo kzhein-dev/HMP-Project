@@ -12,8 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoNgZorroAndModule } from './DemoNgZorroAndModule';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
-import { PostRoomComponent } from './modules/admin/components/post-room/post-room.component';
-
 registerLocaleData(en);
 
 @NgModule({
@@ -21,7 +19,6 @@ registerLocaleData(en);
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    PostRoomComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
