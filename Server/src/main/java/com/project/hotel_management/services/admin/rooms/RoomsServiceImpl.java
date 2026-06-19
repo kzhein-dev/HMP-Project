@@ -1,6 +1,8 @@
 package com.project.hotel_management.services.admin.rooms;
 
 import org.springframework.data.domain.Pageable;
+
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
@@ -10,6 +12,8 @@ import com.project.hotel_management.dto.RoomDto;
 import com.project.hotel_management.dto.RoomsResponseDto;
 import com.project.hotel_management.entity.Room;
 import com.project.hotel_management.repository.RoomRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -46,4 +50,14 @@ public class RoomsServiceImpl implements RoomsService {
 
         return roomsResponseDto;
     }
+    
+    public RoomDto getRoomById(Long id) {
+        Optional<Room> optionalRoom = roomRepository.findById(id);
+        if (optionalRoom.isPresent()) {
+            return optionalRoom.get().getRoomDto();
+        } else {
+            throw new EntityNotFoundException("Room not present.");
+        }
+    }
+    
 }
