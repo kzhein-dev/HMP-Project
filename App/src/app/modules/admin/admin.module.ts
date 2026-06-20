@@ -12,10 +12,12 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination'; 
 import { NzButtonModule } from 'ng-zorro-antd/button'; 
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { UpdateRoomComponent } from './components/update-room/update-room.component';
 const routes: Routes = [
   { path: '', component: AdminComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'room', component: PostRoomComponent },      
+  { path: 'room', component: PostRoomComponent },    
+  { path: 'room/:id/edit', component: UpdateRoomComponent }, 
 ];
 
 @NgModule({
